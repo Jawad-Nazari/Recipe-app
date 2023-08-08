@@ -8,27 +8,27 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
-  username: recipeapp
-  password: 123456
+  username: postgres
+  password: db_password
   timeout: 5000
 
 development:
   <<: *default
-  database: Recipeapp_clone
+  database: Recipeapp
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: Recipeapp_clone-test
+  database: Recipeapp-test
   host: localhost
-  username: recipeapp
-  password: 123456
+  username: postgres
+  password: db_password
 
 production:
   <<: *default
   database: Recipeapp
   host: localhost
-  username: recipeapp
-  password: 123456
+  username: postgres
+  password: db_password
