@@ -58,6 +58,7 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
+
   config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
@@ -147,6 +148,7 @@ Devise.setup do |config|
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
+  
   # their account within 3 days after the mail was sent, but on the fourth day
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
@@ -258,6 +260,7 @@ Devise.setup do |config|
   # Lists the formats that should be treated as navigational. Formats like
   # :html should redirect to the sign in page when the user does not have
   # access, but formats like :xml or :json, should return 401.
+
   #
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists.
