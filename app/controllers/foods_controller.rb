@@ -8,8 +8,7 @@ class FoodsController < ApplicationController
   end
 
   # GET /foods/1 or /foods/1.json
-  def show;
-  end
+  def show; end
 
   # GET /foods/new
   def new
@@ -17,8 +16,7 @@ class FoodsController < ApplicationController
   end
 
   # GET /foods/1/edit
-  def edit;
-  end
+  def edit; end
 
   # POST /foods or /foods.json
   def create
