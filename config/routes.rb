@@ -3,6 +3,6 @@ Rails.application.routes.draw do
  devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
-   resources :recipes, only: [:index] do
-  end
+   resources :recipes, only: [:index]
+   resources :foods
 end
