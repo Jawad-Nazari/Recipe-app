@@ -5,5 +5,8 @@ registrations: 'users/registrations'
 }
 
 get '/public_recipes', to: 'recipes#public_recipes'
-   resources :recipes, only: [:index, :show, :new, :create, :destroy]
+   resources :foods
+    resources :recipes, only: [:index, :show, :new, :create, :destroy] do
+    resources :recipe_foods, only: [:new, :create, :edit, :update, :destroy]
+   end
 end
