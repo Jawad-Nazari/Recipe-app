@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
-
   def index
     @recipes = Recipe.includes([:user]).where(user: current_user)
   end
