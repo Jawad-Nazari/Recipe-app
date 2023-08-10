@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-   root to: 'recipes#index'
- devise_for :users, controllers: {
-  registrations: 'users/registrations'
+  root to: 'recipes#index'
+devise_for :users, controllers: {
+registrations: 'users/registrations'
 }
-   resources :recipes, only: [:index]
-   resources :foods
-  # resources :foods, only: [:index, :show, :destroy, :new, :create]
+
+get '/public_recipes', to: 'recipes#public_recipes'
+   resources :recipes, only: [:index, :show, :new, :create, :destroy]
 end
