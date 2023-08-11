@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_063648) do
     t.datetime "updated_at", null: false
     t.bigint "food_id"
     t.bigint "recipe_id"
-    t.decimal "price"
+    t.decimal "price", default: "0.0"
     t.index ["food_id"], name: "index_recipe_foods_on_food_id"
     t.index ["recipe_id"], name: "index_recipe_foods_on_recipe_id"
   end

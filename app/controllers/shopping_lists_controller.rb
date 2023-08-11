@@ -9,7 +9,7 @@ class ShoppingListsController < ApplicationController
     general_food_list = @user.foods.pluck(:id)
 
     @user.recipes.each do |recipe|
-      recipe.recipe_foods.each do |recipe_food|
+      recipe.recipe_foods.includes(:food).each do |recipe_food| # Include :food association
         next unless general_food_list.exclude?(recipe_food.food_id)
 
         @total_foods += 1

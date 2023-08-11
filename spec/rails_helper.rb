@@ -30,6 +30,10 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.before(:each, type: :system) do
+    # Stub Devise mailer methods to prevent confirmation-related links
+    allow_any_instance_of(Devise::Mailer).to receive(:confirmation_instructions).and_return(double(deliver: true))
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{Rails.root}/spec/fixtures"
 
