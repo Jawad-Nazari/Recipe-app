@@ -18,3 +18,43 @@
     </div>
   </div>
 </div>
+
+<h1><%= @recipe.name %></h1>
+
+<%= form_with model: @recipe, local: true do |form| %>
+  <div class="field">
+    <%= form.label :public, "Public" %>
+    <%= form.check_box :public %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Update Public/Private" %>
+  </div>
+<% end %>
+
+<% if @recipe.public? || current_user == @recipe.user %>
+  <h2>Recipe Details</h2>
+  <!-- Display recipe details here -->
+<% else %>
+  <p>This recipe is private.</p>
+<% end %>
+
+<% if current_user == @recipe.user %>
+  <%= link_to "Add New Food", new_recipe_food_path(@recipe) %>
+<% end %>
+
+<% if current_user == @recipe.user || @recipe.public? %>
+  <p><%= @recipe.description %></p>
+  <!-- Other recipe details -->
+<% end %>
+
+<% if current_user == @recipe.user %>
+  <%= render 'foods/form', food: @food %>
+<% end %>
+
+<% if current_user && current_user == @recipe.user %>
+  <%= link_to 'Edit Recipe', edit_recipe_path(@recipe) %>
+<% end %>
+
+<%= button_to 'Toggle Public/Private', toggle_public_recipe_path(@recipe), method: :patch, remote: true, id: 'toggle-button', class: @recipe.public ? 'public' : 'private' %>
+
+<%= link_to 'Back to Recipes', recipes_path %>

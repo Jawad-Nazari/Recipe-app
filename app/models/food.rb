@@ -1,6 +1,7 @@
 class Food < ApplicationRecord
   has_many :recipe_foods, class_name: 'RecipeFood', foreign_key: 'food_id'
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :recipe
 
   validates :name, presence: true, length: { in: 2..200 }
   validates :measurement_unit, presence: true

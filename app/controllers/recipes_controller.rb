@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @food = Food.new
     @food_recipe = RecipeFood.where(recipe_id: @recipe.id).includes([:food])
   end
 
@@ -18,8 +19,11 @@ class RecipesController < ApplicationController
 
   def toggle_public
     @recipe = Recipe.find(params[:id])
-    @recipe.toggle!(:public)
-    redirect_to @recipe
+    @recipe.update(public: !@recipe.public)
+    respond_to do |format|
+      format.html { redirect_to recipe_path(@recipe) }
+      format.js   # Add a toggle_public.js.erb file for AJAX response
+    end
   end
 
   def public_recipes

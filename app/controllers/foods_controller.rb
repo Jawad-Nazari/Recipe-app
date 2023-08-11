@@ -22,7 +22,13 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @food = Food.new(food_params)
+    @recipe = Recipe.find(params[:recipe_id])
+    @food = @recipe.foods.build(food_params)
+    if @food.save
+      redirect_to recipe_path(@recipe), notice: "Food added successfully."
+    else
+      render 'recipes/show'
+    end
     @food.user = current_user
 
     respond_to do |format|
@@ -64,6 +70,10 @@ class FoodsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_food
     @food = Food.find(params[:id])
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   # Only allow a list of trusted parameters through.
