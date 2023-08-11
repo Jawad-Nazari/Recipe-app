@@ -2,7 +2,6 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_food, only: %i[show edit update destroy]
-
   def index
     @foods = Food.includes(:user).all
   end
@@ -20,7 +19,6 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
     @food.user = current_user
-
     respond_to do |format|
       if @food.save
         format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
@@ -46,7 +44,6 @@ class FoodsController < ApplicationController
 
   def destroy
     @food.destroy
-
     respond_to do |format|
       format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
