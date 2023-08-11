@@ -1,0 +1,7 @@
+<h1><%= @user.name %>'s Profile</h1>
+
+<% @recipes.each do |recipe| %>
+  <h2><%= recipe.title %></h2>
+  <p><strong>Ingredients:</strong><br><%= simple_format(recipe.ingredients) %></p>
+  <p><strong>Instructions:</strong><br><%= simple_format(recipe.instructions) %></p>
+<% end %>
