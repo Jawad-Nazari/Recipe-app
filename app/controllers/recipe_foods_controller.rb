@@ -4,7 +4,6 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = @recipe.recipe_foods.build
     @foods = Food.all
 
-    # Load existing recipe foods for the current recipe when editing
     @food_recipe = @recipe.recipe_foods if params[:action] == 'edit' || params[:action] == 'update'
   end
 
@@ -31,7 +30,6 @@ class RecipeFoodsController < ApplicationController
   def update
     @recipe_food = RecipeFood.find(params[:id])
 
-    # Update the price attribute
     @recipe_food.price = params[:recipe_food][:price]
 
     if @recipe_food.update(recipe_food_params)
@@ -50,9 +48,6 @@ class RecipeFoodsController < ApplicationController
     flash[:notice] = 'Ingredient deleted successfully!'
     redirect_to recipe_path(@recipe)
   end
-
-
-
 
   private
 

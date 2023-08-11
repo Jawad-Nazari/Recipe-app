@@ -15,7 +15,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-between mb-2">
-           <%= link_to "General Shopping List", "#", class: "btn btn-success mt-2" %>
+          
+           <%= link_to "General Shopping List", shopping_lists_path(recipe_id: @recipe.id),  class: "btn btn-success mt-2" %>
             <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe), class: "btn btn-primary" %>
            
           </div>
@@ -59,3 +60,5 @@
     </div>
   </div>
 </div>
+
+
