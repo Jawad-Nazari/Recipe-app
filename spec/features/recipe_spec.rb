@@ -13,27 +13,28 @@ RSpec.describe 'Recipes Page', type: :system do
       fill_in 'user_password', with: 'password'
       click_button 'Log in'
       sleep(2)
-      visit public_recipes_path
+      visit recipes_path
     end
 
     it 'displays the name of recipe' do
       expect(page).to have_content(@recipe.name)
     end
 
-    it 'displays the name of the user' do
-      expect(page).to have_content(@user.name)
+    it 'displays the description of recipe' do
+      expect(page).to have_content(@recipe.description)
     end
 
-    it 'should display the title of the page as Public Recipes' do
-      expect(page).to have_content('Public Recipes')
+    it 'displays a button with text Add New Recipe' do
+      expect(page).to have_content('Add New Recipe')
     end
 
-    it 'displays the Total Food Items' do
-      expect(page).to have_content('Total Food Items: 0')
+    it ' has button to redirect to a page to add new recipe' do
+      click_link 'Add New Recipe'
+      expect(page).to have_current_path new_recipe_path
     end
 
-    it 'displays the Total Price' do
-      expect(page).to have_content('Total Price: $ 0')
+    it 'deletes a recipe when Remove button is clicked' do
+      expect(page).to have_button('Remove')
     end
   end
 end
