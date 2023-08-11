@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @food = @recipe.foods.build(food_params)
     if @food.save
-      redirect_to recipe_path(@recipe), notice: "Food added successfully."
+      redirect_to recipe_path(@recipe), notice: 'Food added successfully.'
     else
       render 'recipes/show'
     end

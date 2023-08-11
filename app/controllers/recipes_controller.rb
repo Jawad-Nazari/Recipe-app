@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
     @recipe.update(public: !@recipe.public)
     respond_to do |format|
       format.html { redirect_to recipe_path(@recipe) }
-      format.js   # Add a toggle_public.js.erb file for AJAX response
+      format.js # Add a toggle_public.js.erb file for AJAX response
     end
   end
 
