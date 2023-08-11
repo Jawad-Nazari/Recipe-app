@@ -1,4 +1,6 @@
 class RecipeFoodsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.build
@@ -30,23 +32,34 @@ class RecipeFoodsController < ApplicationController
   def update
     @recipe_food = RecipeFood.find(params[:id])
 
-    @recipe_food.price = params[:recipe_food][:price]
+    if can? :manage, @recipe_food.recipe
+      @recipe_food.price = params[:recipe_food][:price]
 
-    if @recipe_food.update(recipe_food_params)
-      flash[:notice] = 'Ingredient updated successfully!'
-      redirect_to recipe_path(@recipe_food.recipe)
+      if @recipe_food.update(recipe_food_params)
+        flash[:notice] = 'Ingredient updated successfully!'
+        redirect_to recipe_path(@recipe_food.recipe)
+      else
+        @foods = Food.all
+        render :edit
+      end
     else
-      @foods = Food.all
-      render :edit
+      flash[:alert] = 'Unauthorized'
+      redirect_to recipe_path(@recipe_food.recipe)
     end
   end
 
   def destroy
     @recipe_food = RecipeFood.find(params[:id])
-    @recipe = @recipe_food.recipe
-    @recipe_food.destroy
-    flash[:notice] = 'Ingredient deleted successfully!'
-    redirect_to recipe_path(@recipe)
+
+    if can? :manage, @recipe_food.recipe
+      @recipe = @recipe_food.recipe
+      @recipe_food.destroy
+      flash[:notice] = 'Ingredient deleted successfully!'
+      redirect_to recipe_path(@recipe)
+    else
+      flash[:alert] = 'Unauthorized'
+      redirect_to recipe_path(@recipe_food.recipe)
+    end
   end
 
   private
