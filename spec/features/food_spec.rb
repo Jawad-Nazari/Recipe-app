@@ -5,7 +5,7 @@ RSpec.describe 'Foods page', type: :system do
     before(:each) do
       @user = User.create!(name: 'name', email: 'email@gmail.com', password: 'password')
       @food = Food.create!(name: 'food', measurement_unit: 'kg', quantity: 5, price: 10, user_id: @user.id)
-      @user.skip_confirmation!
+
       @user.save!
       visit new_user_session_path
       fill_in 'user_email', with: 'email@gmail.com'

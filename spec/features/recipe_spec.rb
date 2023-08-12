@@ -6,7 +6,6 @@ RSpec.describe 'Recipes Page', type: :system do
       @user = User.create!(name: 'name', email: 'email@gmail.com', password: 'password')
       @recipe = Recipe.create!(name: 'recipe', preparation_time: 1, cooking_time: 2, description: 'description',
                                public: true, user_id: @user.id)
-      @user.skip_confirmation!
       @user.save!
       visit new_user_session_path
       fill_in 'user_email', with: 'email@gmail.com'

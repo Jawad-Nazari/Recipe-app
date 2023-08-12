@@ -6,11 +6,12 @@ class ShoppingListsController < ApplicationController
     @total_price = BigDecimal('0')
     @recipe_foods = []
 
-    general_food_list = @user.foods.pluck(:id)
+    general_food_set = @user.foods.pluck(:id).to_set
 
     @user.recipes.each do |recipe|
-      recipe.recipe_foods.includes(:food).each do |recipe_food| # Include :food association
-        next unless general_food_list.exclude?(recipe_food.food_id)
+      recipe.recipe_foods.includes(:food).each do |recipe_food|
+        # If the food is already in the general food list, skip it
+        next if general_food_set.include?(recipe_food.food_id)
 
         @total_foods += 1
         quantity = recipe_food.quantity.to_d
