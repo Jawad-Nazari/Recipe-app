@@ -4,6 +4,7 @@
       <h2 class="text-center">New Recipe</h2>
     </div>
   </div>
+  
   <div class="row justify-content-center">
     <div class="col-md-6">
       <%= form_with(model: @recipe, url: recipes_path, local: true, class: "custom-form") do |form| %>
@@ -36,26 +37,6 @@
 
         <div class="form-group">
           <%= form.submit "Save Recipe", class: "btn btn-primary btn-block" %>
-        </div>
-
-        <!-- Recipe details form fields -->
-        <div class="form-group">
-          <%= form.label :title %>
-          <%= form.text_field :title %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :ingredients %>
-          <%= form.text_area :ingredients %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :instructions %>
-          <%= form.text_area :instructions %>
-        </div>
-
-        <div class="form-group">
-          <%= form.submit %>
         </div>
       <% end %>
     </div>
