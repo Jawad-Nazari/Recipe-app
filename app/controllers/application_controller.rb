@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
     recipes_path
   end
 
-
   protected
 
   def update_allowed_parameters
