@@ -1,6 +1,7 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+ Rails.application.config.default_url_options[:host] = 'localhost'
   # Settings specified here will take precedence over those in config/application.rb.
   config.after_initialize do
     Bullet.enable        = true
@@ -10,6 +11,7 @@ Rails.application.configure do
     Bullet.rails_logger  = true
     Bullet.add_footer    = true
   end
+  
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -39,7 +41,7 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
+  
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -51,7 +53,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
