@@ -3,7 +3,11 @@ class FoodsController < ApplicationController
   load_and_authorize_resource
   before_action :set_food, only: %i[show edit update destroy]
   def index
-    @foods = Food.includes(:user).all
+    @foods = if user_signed_in?
+               Food.where(user: current_user)
+             else
+               []
+             end
   end
 
   def show; end
