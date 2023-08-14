@@ -1,0 +1,29 @@
+<!-- app/views/foods/show.html.erb -->
+
+<div class="text-center mx-auto" style="width: 60%;">
+  <h1><%= @food.name %></h1>
+
+  <table class="table">
+    <tr>
+      <th>Measurement Unit</th>
+      <td><%= @food.measurement_unit %></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td><%= @food.price %></td>
+    </tr>
+    <tr>
+      <th>Quantity</th>
+      <td><%= @food.quantity %></td>
+    </tr>
+    <tr>
+      <th>User</th>
+      <td><%= @food.user.name %></td>
+    </tr>
+  </table>
+
+  <div>
+    <%= link_to 'Edit', edit_food_path(@food), class: 'btn btn-secondary' %> |
+    <%= link_to 'Back', foods_path, class: 'btn btn-primary' %>
+  </div>
+</div>

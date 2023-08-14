@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="text-center my-4">Edit Food Item</h1>
+
+  <%= render 'form', food: @food %>
+
+  <div class="row justify-content-end mt-3">
+    <div class="col-auto">
+      <%= link_to 'Show', @food, class: 'btn btn-secondary mx-1' %>
+      <%= link_to 'Back', foods_path, class: 'btn btn-primary mx-1' %>
+    </div>
+  </div>
+</div>

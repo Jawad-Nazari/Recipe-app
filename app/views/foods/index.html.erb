@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Index</title>
+  <%= stylesheet_link_tag 'food', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+<%= link_to 'New Food Item', new_food_path, class: 'btn btn-primary ml-5' %>
+
+<h1 class='heading'>Food Items</h1>
+
+<table class='food-table'>
+  <thead>
+    <tr class='food-header'>
+      <th>Name</th>
+      <th>Measurement Unit</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>User</th>
+      <th colspan="3"> Action </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.user.name %></td>
+        <td>
+        <%= link_to food_path(food), class: 'btn btn-info' do %>
+          Show
+        <% end %>
+        </td>
+        <td><%= link_to 'Edit', edit_food_path(food), class: 'btn btn-secondary' %></td>
+        <td>
+        <%= form_with model: food, method: :delete, data: { confirm: 'Are you sure?' } do |form| %>
+          <%= form.submit 'Delete', class: 'btn btn-danger' %>
+        <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</body>
+</html>

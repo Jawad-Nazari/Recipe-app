@@ -1,0 +1,14 @@
+<!-- app/views/foods/new.html.erb -->
+
+<div class="text-center">
+  <h1>New Food Item</h1>
+</div>
+
+  <%= render "form", food: @food %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back", foods_path %>
+  </div>
+
